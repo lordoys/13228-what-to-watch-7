@@ -1,37 +1,40 @@
 import React from 'react';
-import MainPage from '../mainPage/mainPage';
-import SignInPage from '../signInPage/signInPage';
-import MyListPage from '../myListPage/myListPage';
-import FilmPage from '../filmPage/filmPage';
-import AddReviewPage from '../addReviewPage/addReviewPage';
-import PlayerPage from '../playerPage/playerPage';
+import MainPage from '../main-page/main-page';
+import SignInPage from '../signIn-page/sign-in-page';
+import MyListPage from '../my-list-page/my-list-page';
+import FilmPage from '../film-page/film-page';
+import AddReviewPage from '../add-review-page/add-review-page';
+import PlayerPage from '../player-page/player-page';
+import NotFoundPage from '../not-found-page/not-found-page';
+import {AppRoute} from '../../const';
 import PropTypes from 'prop-types';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App({genre, year}) {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact>
-          <MainPage genre={genre} year={year} />
+        <Route path={AppRoute.ROOT} exact>
+          <MainPage genre={genre} year={year}/>
         </Route>
-        <Route path="/login" exact component={SignInPage} />
-        <Route path="/mylist" exact component={MyListPage} />
-        <Route path="/films/:id" exact component={FilmPage} />
-        <Route path="/films/:id/review" exact component={AddReviewPage} />
-        <Route path="/player/:id" exact component={PlayerPage} />
-        <Route
-          render={() => (
-            <>
-              <h1>
-                404.
-                <br />
-                <small>Page not found</small>
-              </h1>
-              <Link to="/">Go to main page</Link>
-            </>
-          )}
-        />
+        <Route path={AppRoute.LOGIN} exact>
+          <SignInPage/>
+        </Route>
+        <Route path={AppRoute.MY_LIST} exact>
+          <MyListPage/>
+        </Route>
+        <Route path={AppRoute.FILM} exact>
+          <FilmPage/>
+        </Route>
+        <Route path={AppRoute.FILM_REVIEW} exact>
+          <AddReviewPage/>
+        </Route>
+        <Route path={AppRoute.PLAYER} exact>
+          <PlayerPage/>
+        </Route>
+        <Route>
+          <NotFoundPage/>
+        </Route>
       </Switch>
     </BrowserRouter>
   );
