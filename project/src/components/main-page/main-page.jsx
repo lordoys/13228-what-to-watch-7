@@ -1,5 +1,5 @@
 import React from 'react';
-import FilmCard from '../filmCard/filmCard';
+import FilmCard from '../film-card/film-card';
 import PropTypes from 'prop-types';
 
 function MainPage({genre, year}) {
