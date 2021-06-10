@@ -43,6 +43,7 @@ function App({genre, year}) {
 App.propTypes = {
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
+  films: PropTypes.array.isRequired,
 };
 
 export default App;
