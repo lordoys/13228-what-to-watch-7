@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function FilmCard() {
+function FilmCard({films}) {
   return (
     <article className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
@@ -12,5 +13,9 @@ function FilmCard() {
     </article>
   );
 }
+
+FilmCard.propTypes = {
+  films: PropTypes.array.isRequired,
+};
 
 export default FilmCard;

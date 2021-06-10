@@ -10,7 +10,7 @@ import {AppRoute} from '../../const';
 import PropTypes from 'prop-types';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-function App({genre, year}) {
+function App({films, genre, year}) {
   return (
     <BrowserRouter>
       <Switch>
