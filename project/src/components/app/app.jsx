@@ -21,16 +21,16 @@ function App({films, genre, year}) {
           <SignInPage/>
         </Route>
         <Route path={AppRoute.MY_LIST} exact>
-          <MyListPage/>
+          <MyListPage films={films}/>
         </Route>
         <Route path={AppRoute.FILM} exact>
           <FilmPage/>
         </Route>
         <Route path={AppRoute.FILM_REVIEW} exact>
-          <AddReviewPage/>
+          <AddReviewPage films={films}/>
         </Route>
         <Route path={AppRoute.PLAYER} exact>
-          <PlayerPage/>
+          <PlayerPage films={films}/>
         </Route>
         <Route>
           <NotFoundPage/>

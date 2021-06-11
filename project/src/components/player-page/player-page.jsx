@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
-function PlayerPage() {
+function PlayerPage({films}) {
   return (
     <div className="player">
       <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
@@ -36,5 +37,9 @@ function PlayerPage() {
     </div>
   );
 }
+
+PlayerPage.propTypes = {
+  films: PropTypes.array.isRequired,
+};
 
 export default PlayerPage;

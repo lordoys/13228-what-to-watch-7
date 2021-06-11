@@ -13,7 +13,7 @@ function FilmList({films}) {
 }
 
 FilmList.propTypes = {
-  films: PropTypes.array.isRequired,
+  films: PropTypes.array,
 };
 
 export default FilmList;

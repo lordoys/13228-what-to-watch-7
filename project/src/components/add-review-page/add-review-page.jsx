@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
-function AddReviewPage() {
+function AddReviewPage({films}) {
   const url = '#';
   return (
     <section className="film-card film-card--full">
@@ -97,5 +98,9 @@ function AddReviewPage() {
     </section>
   );
 }
+
+AddReviewPage.propTypes = {
+  films: PropTypes.array.isRequired,
+};
 
 export default AddReviewPage;
