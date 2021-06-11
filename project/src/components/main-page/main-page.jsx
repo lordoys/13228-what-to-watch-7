@@ -1,8 +1,8 @@
 import React from 'react';
-import FilmCard from '../film-card/film-card';
 import PropTypes from 'prop-types';
+import FilmList from '../film-list/film-list';
 
-function MainPage({genre, year}) {
+function MainPage({films, genre, year}) {
   const url = '#';
   return (
     <>
@@ -100,9 +100,7 @@ function MainPage({genre, year}) {
               <a href={url} className="catalog__genres-link">Thrillers</a>
             </li>
           </ul>
-          <div className="catalog__films-list">
-            {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].map((item) => <FilmCard key={item} />)}
-          </div>
+          <FilmList films={films} />
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
@@ -128,6 +126,7 @@ function MainPage({genre, year}) {
 MainPage.propTypes = {
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
+  films: PropTypes.array.isRequired,
 };
 
 export default MainPage;

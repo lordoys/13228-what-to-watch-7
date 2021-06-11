@@ -15,7 +15,7 @@ function App({films, genre, year}) {
     <BrowserRouter>
       <Switch>
         <Route path={AppRoute.ROOT} exact>
-          <MainPage genre={genre} year={year}/>
+          <MainPage films={films} genre={genre} year={year}/>
         </Route>
         <Route path={AppRoute.LOGIN} exact>
           <SignInPage/>
