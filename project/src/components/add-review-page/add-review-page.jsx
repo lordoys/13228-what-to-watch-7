@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from "prop-types";
 
-function AddReviewPage({films}) {
+function AddReviewPage({films, match}) {
+  const id = match.params.id;
+  const film = films[id - 1];
   const url = '#';
+
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+          <img src={film.backgroundImage} alt={film.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -24,7 +27,7 @@ function AddReviewPage({films}) {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <a href="film-page.html" className="breadcrumbs__link">{film.name}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a href={url} className="breadcrumbs__link">Add review</a>
@@ -45,7 +48,7 @@ function AddReviewPage({films}) {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
+          <img src={film.backgroundImage} alt={film.name} width="218" height="327"/>
         </div>
       </div>
 

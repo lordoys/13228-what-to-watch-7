@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function FilmCard({film, setCurrentFilm}) {
   const [movie] = useState(film);
+  const link = '/films/' + film.id;
 
   return (
     <article className="small-film-card catalog__films-card">
@@ -10,7 +12,7 @@ function FilmCard({film, setCurrentFilm}) {
         <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"/>
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href={'film-page.html'}>{movie.name}</a>
+        <Link className="small-film-card__link" to={{pathname: link,}}>{movie.name}</Link>
       </h3>
     </article>
   );

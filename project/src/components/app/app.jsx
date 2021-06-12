@@ -14,27 +14,41 @@ function App({films, genre, year}) {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path={AppRoute.ROOT} exact>
-          <MainPage films={films} genre={genre} year={year}/>
-        </Route>
-        <Route path={AppRoute.LOGIN} exact>
-          <SignInPage/>
-        </Route>
-        <Route path={AppRoute.MY_LIST} exact>
-          <MyListPage films={films}/>
-        </Route>
-        <Route path={AppRoute.FILM} exact>
-          <FilmPage/>
-        </Route>
-        <Route path={AppRoute.FILM_REVIEW} exact>
-          <AddReviewPage films={films}/>
-        </Route>
-        <Route path={AppRoute.PLAYER} exact>
-          <PlayerPage films={films}/>
-        </Route>
-        <Route>
-          <NotFoundPage/>
-        </Route>
+        <Route path={AppRoute.ROOT} exact
+          render={(props) => (
+            <MainPage {...props} films={films} genre={genre} year={year}/>
+          )}
+        />
+        <Route path={AppRoute.LOGIN} exact
+          render={(props) => (
+            <SignInPage {...props}/>
+          )}
+        />
+        <Route path={AppRoute.MY_LIST} exact
+          render={(props) => (
+            <MyListPage {...props} films={films}/>
+          )}
+        />
+        <Route path={AppRoute.FILM} exact
+          render={(props) => (
+            <FilmPage {...props} films={films}/>
+          )}
+        />
+        <Route path={AppRoute.FILM_REVIEW} exact
+          render={(props) => (
+            <AddReviewPage {...props} films={films}/>
+          )}
+        />
+        <Route path={AppRoute.PLAYER} exact
+          render={(props) => (
+            <PlayerPage {...props} films={films}/>
+          )}
+        />
+        <Route
+          render={() => (
+            <NotFoundPage/>
+          )}
+        />
       </Switch>
     </BrowserRouter>
   );
