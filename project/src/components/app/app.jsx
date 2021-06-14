@@ -9,6 +9,7 @@ import NotFoundPage from '../not-found-page/not-found-page';
 import {AppRoute} from '../../const';
 import PropTypes from 'prop-types';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import filmsProp from '../../props/films.prop';
 
 function App({films, genre, year}) {
   return (
@@ -57,7 +58,7 @@ function App({films, genre, year}) {
 App.propTypes = {
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
-  films: PropTypes.array.isRequired,
+  films: filmsProp,
 };
 
 export default App;

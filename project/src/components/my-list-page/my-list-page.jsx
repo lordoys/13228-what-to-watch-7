@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import filmsProp from '../../props/films.prop';
 
 function MyListPage({films}) {
   const url = '#';
@@ -33,7 +33,7 @@ function MyListPage({films}) {
 
         <div className="catalog__films-list">
           {films.map((film) => (
-            <article className="small-film-card catalog__films-card">
+            <article key={film.id} className="small-film-card catalog__films-card">
               <div className="small-film-card__image">
                 <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"/>
               </div>
@@ -63,7 +63,7 @@ function MyListPage({films}) {
 }
 
 MyListPage.propTypes = {
-  films: PropTypes.array.isRequired,
+  films: filmsProp,
 };
 
 export default MyListPage;

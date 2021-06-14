@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
+import filmsProp from '../../props/films.prop';
 
 function MainPage({films, genre, year}) {
   const url = '#';
@@ -126,7 +127,7 @@ function MainPage({films, genre, year}) {
 MainPage.propTypes = {
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
-  films: PropTypes.array.isRequired,
+  films: filmsProp,
 };
 
 export default MainPage;

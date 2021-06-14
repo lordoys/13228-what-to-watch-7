@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import filmsProp from '../../props/films.prop';
 
 function FilmPage({films, match}) {
   const id = match.params.id;
@@ -162,5 +164,10 @@ function FilmPage({films, match}) {
     </>
   );
 }
+
+FilmPage.propTypes = {
+  films: filmsProp,
+  match: PropTypes.object,
+};
 
 export default FilmPage;

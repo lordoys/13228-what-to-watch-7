@@ -1,9 +1,15 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import filmsProp from '../../props/films.prop';
 
 function PlayerPage({films, match}) {
   const id = match.params.id;
-  const film = films[id - 1];
+  const film = films.reduce((item, result) => {
+    if(item.id === id) {
+      result = item;
+    }
+    return result;
+  }, {});
 
   return (
     <div className="player">
@@ -42,7 +48,8 @@ function PlayerPage({films, match}) {
 }
 
 PlayerPage.propTypes = {
-  films: PropTypes.array.isRequired,
+  films: filmsProp,
+  match: PropTypes.object,
 };
 
 export default PlayerPage;

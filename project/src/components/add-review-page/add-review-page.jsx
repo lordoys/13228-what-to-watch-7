@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from "prop-types";
-import CommentForm from "../comment-form/comment-form";
+import PropTypes from 'prop-types';
+import CommentForm from '../comment-form/comment-form';
+import filmsProp from '../../props/films.prop';
 
 function AddReviewPage({films, match}) {
   const id = match.params.id;
@@ -58,7 +59,8 @@ function AddReviewPage({films, match}) {
 }
 
 AddReviewPage.propTypes = {
-  films: PropTypes.array.isRequired,
+  films: filmsProp,
+  match: PropTypes.object,
 };
 
 export default AddReviewPage;

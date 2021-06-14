@@ -1,6 +1,6 @@
 const films = [
   {
-    id: 1,
+    id: '1',
     name: 'The Grand Budapest Hotel',
     posterImage: 'poster-image.jpg',
     previewImage: 'preview-image.jpg',
@@ -19,7 +19,7 @@ const films = [
     isFavorite: false,
   },
   {
-    id: 2,
+    id: '2',
     name: 'Cruella',
     posterImage: 'poster-image.jpg',
     previewImage: 'preview-image.jpg',
@@ -38,7 +38,7 @@ const films = [
     isFavorite: false,
   },
   {
-    id: 3,
+    id: '3',
     name: 'A Quiet Place Part II',
     posterImage: 'poster-image.jpg',
     previewImage: 'preview-image.jpg',
@@ -57,7 +57,7 @@ const films = [
     isFavorite: false,
   },
   {
-    id: 4,
+    id: '4',
     name: 'Army of the Dead',
     posterImage: 'poster-image.jpg',
     previewImage: 'preview-image.jpg',
@@ -76,7 +76,7 @@ const films = [
     isFavorite: false,
   },
   {
-    id: 5,
+    id: '5',
     name: 'The Conjuring: The Devil Made Me Do It',
     posterImage: 'poster-image.jpg',
     previewImage: 'preview-image.jpg',
@@ -95,7 +95,7 @@ const films = [
     isFavorite: false,
   },
   {
-    id: 6,
+    id: '6',
     name: 'Wrath of Man',
     posterImage: 'poster-image.jpg',
     previewImage: 'preview-image.jpg',
@@ -114,7 +114,7 @@ const films = [
     isFavorite: false,
   },
   {
-    id: 7,
+    id: '7',
     name: 'Old',
     posterImage: 'poster-image.jpg',
     previewImage: 'preview-image.jpg',
@@ -133,7 +133,7 @@ const films = [
     isFavorite: false,
   },
   {
-    id: 8,
+    id: '8',
     name: 'From the Book of Saw',
     posterImage: 'poster-image.jpg',
     previewImage: 'preview-image.jpg',
