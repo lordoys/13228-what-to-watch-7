@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import filmProp from '../../props/film.prop';
+import {AppRoute} from '../../const';
 
 function FilmCard({film, onSetCurrentFilm}) {
-  const baseUrl = '/films/';
-  const link = baseUrl + film.id;
+  const history = useHistory();
+
   function handleMouseEnter() {
     onSetCurrentFilm(film);
+  }
+
+  function handleClick() {
+    history.push(`${AppRoute.FILMS}/${film.id}`);
   }
 
   return (
@@ -16,7 +21,7 @@ function FilmCard({film, onSetCurrentFilm}) {
         <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"/>
       </div>
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={{pathname: link}}>{film.name}</Link>
+        <Link className="small-film-card__link" onClick={handleClick} to={`${AppRoute.FILMS}/${film.id}`}>{film.name}</Link>
       </h3>
     </article>
   );
