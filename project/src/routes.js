@@ -3,7 +3,7 @@ export const AppRoute = {
   LOGIN: '/login',
   MY_LIST: '/mylist',
   FILMS: '/films',
-  FILM: '/films/:id',
-  FILM_REVIEW: '/films/:id/review',
+  FILM: '/film/:id',
+  FILM_REVIEW: '/film/:id/review',
   PLAYER: '/player/:id?',
 };
