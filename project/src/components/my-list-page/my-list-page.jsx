@@ -1,5 +1,7 @@
 import React from 'react';
 import filmsProp from '../../props/films.prop';
+import {AppRoute} from "../../routes";
+import {Link} from "react-router-dom";
 
 function MyListPage({films}) {
   const url = '#';
@@ -7,11 +9,11 @@ function MyListPage({films}) {
     <div className="user-page">
       <header className="page-header user-page__head">
         <div className="logo">
-          <a href="main.html" className="logo__link">
+          <Link className="logo__link" to={AppRoute.ROOT}>
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <h1 className="page-title user-page__title">My list</h1>
@@ -23,7 +25,7 @@ function MyListPage({films}) {
             </div>
           </li>
           <li className="user-block__item">
-            <a href={url} className="user-block__link">Sign out</a>
+            <Link className="user-block__link" to={AppRoute.LOGIN}>Sign out</Link>
           </li>
         </ul>
       </header>
@@ -38,7 +40,7 @@ function MyListPage({films}) {
                 <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"/>
               </div>
               <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">{film.name}</a>
+                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}`}>{film.name}</Link>
               </h3>
             </article>
           ))}
@@ -47,11 +49,11 @@ function MyListPage({films}) {
 
       <footer className="page-footer">
         <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
+          <Link className="logo__link logo__link--light" to={AppRoute.ROOT}>
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <div className="copyright">

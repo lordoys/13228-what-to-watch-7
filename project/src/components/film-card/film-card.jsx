@@ -20,14 +20,15 @@ function FilmCard({film}) {
   }
 
   function handleClick() {
-    history.push(`${AppRoute.FILMS}/${film.id}`);
+    cardIsHovered = false;
+    history.push(`${AppRoute.FILM_BASE_IRL}/${film.id}`);
   }
 
   return (
     <article ref={cardRef} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} className="small-film-card catalog__films-card">
       <FilmVideo src={film.previewVideoLink} poster={`img/${film.previewImage}`}/>
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" onClick={handleClick} to={`${AppRoute.FILM}/${film.id}`}>{film.name}</Link>
+        <Link className="small-film-card__link" onClick={handleClick} to={`${AppRoute.FILM_BASE_IRL}/${film.id}`}>{film.name}</Link>
       </h3>
     </article>
   );
