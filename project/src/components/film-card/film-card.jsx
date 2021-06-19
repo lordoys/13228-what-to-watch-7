@@ -1,14 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {useRef} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import filmProp from '../../props/film.prop';
 import {AppRoute} from '../../const';
+import FilmVideo from "../film-video/film-video";
 
-function FilmCard({film, onSetCurrentFilm}) {
+function FilmCard({film}) {
   const history = useHistory();
+  const cardRef = useRef(null);
+  let cardIsHovered = false;
 
   function handleMouseEnter() {
-    onSetCurrentFilm(film);
+    cardIsHovered = true;
+    setTimeout(() => cardIsHovered && cardRef.current.firstChild.play(), 1000);
+  }
+
+  function handleMouseLeave() {
+    cardIsHovered = false;
+    cardRef.current.firstChild.load();
   }
 
   function handleClick() {
@@ -16,10 +24,8 @@ function FilmCard({film, onSetCurrentFilm}) {
   }
 
   return (
-    <article className="small-film-card catalog__films-card">
-      <div onMouseEnter={handleMouseEnter} className="small-film-card__image">
-        <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"/>
-      </div>
+    <article ref={cardRef} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} className="small-film-card catalog__films-card">
+      <FilmVideo src={film.previewVideoLink} poster={`img/${film.previewImage}`}/>
       <h3 className="small-film-card__title">
         <Link className="small-film-card__link" onClick={handleClick} to={`${AppRoute.FILMS}/${film.id}`}>{film.name}</Link>
       </h3>
@@ -29,7 +35,6 @@ function FilmCard({film, onSetCurrentFilm}) {
 
 FilmCard.propTypes = {
   film: filmProp,
-  onSetCurrentFilm: PropTypes.func.isRequired,
 };
 
 export default FilmCard;
