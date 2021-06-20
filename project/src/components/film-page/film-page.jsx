@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import filmsProp from '../../props/films.prop';
-import {AppRoute} from "../../routes";
-import {Link} from "react-router-dom";
+import {AppRoute} from '../../routes';
+import {Link} from 'react-router-dom';
 
 function FilmPage({films, match}) {
   const id = match.params.id;
   const film = films[id - 1];
-  const url = '#';
 
   return (
     <>

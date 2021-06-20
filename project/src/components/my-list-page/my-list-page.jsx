@@ -1,10 +1,9 @@
 import React from 'react';
 import filmsProp from '../../props/films.prop';
-import {AppRoute} from "../../routes";
-import {Link} from "react-router-dom";
+import {AppRoute} from '../../routes';
+import {Link} from 'react-router-dom';
 
 function MyListPage({films}) {
-  const url = '#';
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

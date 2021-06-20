@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import filmProp from '../../props/film.prop';
 import {AppRoute} from '../../routes';
-import FilmVideo from "../film-video/film-video";
+import FilmVideo from '../film-video/film-video';
 
 function FilmCard({film}) {
   const history = useHistory();

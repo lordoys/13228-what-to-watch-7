@@ -1,6 +1,6 @@
 import React from 'react';
-import {AppRoute} from "../../routes";
-import {Link} from "react-router-dom";
+import {AppRoute} from '../../routes';
+import {Link} from 'react-router-dom';
 
 function SignInPage() {
   return (

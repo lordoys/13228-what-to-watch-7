@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
 import filmsProp from '../../props/films.prop';
-import {AppRoute} from "../../routes";
-import {Link} from "react-router-dom";
+import {AppRoute} from '../../routes';
+import {Link} from 'react-router-dom';
 
 function MainPage({films, genre, year}) {
-  const url = '#';
   return (
     <>
       <section className="film-card">
