@@ -30,10 +30,10 @@ function AddReviewPage({films, match}) {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link className="breadcrumbs__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}`}>{film.name}</Link>
+                <Link className="breadcrumbs__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
-                <Link className="breadcrumbs__link">Add review</Link>
+                <Link className="breadcrumbs__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/review`}>Add review</Link>
               </li>
             </ul>
           </nav>

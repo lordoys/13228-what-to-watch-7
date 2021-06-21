@@ -72,34 +72,34 @@ function MainPage({films, genre, year}) {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <ul className="catalog__genres-list">
             <li className="catalog__genres-item catalog__genres-item--active">
-              <Link className="catalog__genres-link">All genres</Link>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>All genres</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link className="catalog__genres-link">Comedies</Link>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Comedies</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link className="catalog__genres-link">Crime</Link>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Crime</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link className="catalog__genres-link">Documentary</Link>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Documentary</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link className="catalog__genres-link">Dramas</Link>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Dramas</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link className="catalog__genres-link">Horror</Link>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Horror</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link className="catalog__genres-link">Kids & Family</Link>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Kids & Family</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link className="catalog__genres-link">Romance</Link>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Romance</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link className="catalog__genres-link">Sci-Fi</Link>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Sci-Fi</Link>
             </li>
             <li className="catalog__genres-item">
-              <Link className="catalog__genres-link">Thrillers</Link>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Thrillers</Link>
             </li>
           </ul>
           <FilmList films={films} />

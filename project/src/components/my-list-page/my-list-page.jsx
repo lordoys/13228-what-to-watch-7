@@ -39,7 +39,7 @@ function MyListPage({films}) {
                 <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"/>
               </div>
               <h3 className="small-film-card__title">
-                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}`}>{film.name}</Link>
+                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>{film.name}</Link>
               </h3>
             </article>
           ))}

@@ -76,13 +76,13 @@ function FilmPage({films, match}) {
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item film-nav__item--active">
-                    <Link className="film-nav__link">Overview</Link>
+                    <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>Overview</Link>
                   </li>
                   <li className="film-nav__item">
-                    <Link className="film-nav__link">Details</Link>
+                    <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/details`}>Details</Link>
                   </li>
                   <li className="film-nav__item">
-                    <Link className="film-nav__link">Reviews</Link>
+                    <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/reviews`}>Reviews</Link>
                   </li>
                 </ul>
               </nav>
@@ -115,7 +115,7 @@ function FilmPage({films, match}) {
                 <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"/>
               </div>
               <h3 className="small-film-card__title">
-                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}`}>{film.name}</Link>
+                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>{film.name}</Link>
               </h3>
             </article>
 
@@ -124,7 +124,7 @@ function FilmPage({films, match}) {
                 <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175"/>
               </div>
               <h3 className="small-film-card__title">
-                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}`}>{film.name}</Link>
+                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>{film.name}</Link>
               </h3>
             </article>
 
@@ -133,7 +133,7 @@ function FilmPage({films, match}) {
                 <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175"/>
               </div>
               <h3 className="small-film-card__title">
-                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}`}>{film.name}</Link>
+                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>{film.name}</Link>
               </h3>
             </article>
 
@@ -142,7 +142,7 @@ function FilmPage({films, match}) {
                 <img src="img/aviator.jpg" alt="Aviator" width="280" height="175"/>
               </div>
               <h3 className="small-film-card__title">
-                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}`}>{film.name}</Link>
+                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>{film.name}</Link>
               </h3>
             </article>
           </div>
