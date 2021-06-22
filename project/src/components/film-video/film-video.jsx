@@ -1,26 +1,16 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-function FilmVideo({poster, src}) {
+const FilmVideo = React.forwardRef(({poster, src}, videoRef) => {
   const videoSize = {
     width: '280',
     height: '175',
   };
-  const videoRef = useRef(null);
-  let waitingPlay;
 
-  function handleMouseEnter() {
-    waitingPlay = setTimeout(() => videoRef.current.play(), 1000);
-  }
+  return <video ref={videoRef} muted poster={poster} src={src} width={videoSize.width} height={videoSize.height} preload='none'/>;
+});
 
-  function handleMouseLeave() {
-    clearTimeout(waitingPlay);
-    videoRef.current.load();
-  }
-
-  return <video ref={videoRef} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}  muted poster={poster} src={src} width={videoSize.width} height={videoSize.height} preload='none'/>;
-}
-
+FilmVideo.displayName = 'FilmVideo';
 FilmVideo.propTypes = {
   poster: PropTypes.string,
   src: PropTypes.string,
