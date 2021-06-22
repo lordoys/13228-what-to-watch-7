@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import filmsProp from '../../props/films.prop';
 import {AppRoute} from '../../routes';
 import {Link} from 'react-router-dom';
+import FilmTabs from '../film-tabs/film-tabs';
 
 function FilmPage({films, match}) {
   const id = match.params.id;
@@ -71,36 +72,7 @@ function FilmPage({films, match}) {
             <div className="film-card__poster film-card__poster--big">
               <img src={`img/${film.posterImage}`} alt={`img/${film.posterImage}`} width="218" height="327"/>
             </div>
-
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>Overview</Link>
-                  </li>
-                  <li className="film-nav__item">
-                    <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/details`}>Details</Link>
-                  </li>
-                  <li className="film-nav__item">
-                    <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/reviews`}>Reviews</Link>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="film-rating">
-                <div className="film-rating__score">{film.rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">{film.scoresCount} ratings</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                <p>{film.description}</p>
-                <p className="film-card__director"><strong>Director: {film.director}</strong></p>
-                <p className="film-card__starring"><strong>Starring: {film.starring} and other</strong></p>
-              </div>
-            </div>
+            <FilmTabs film={film} match={match} />
           </div>
         </div>
       </section>
