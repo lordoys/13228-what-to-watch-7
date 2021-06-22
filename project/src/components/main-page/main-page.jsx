@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
 import filmsProp from '../../props/films.prop';
+import {AppRoute} from '../../routes';
+import {Link} from 'react-router-dom';
 
 function MainPage({films, genre, year}) {
-  const url = '#';
   return (
     <>
       <section className="film-card">
@@ -16,11 +17,11 @@ function MainPage({films, genre, year}) {
 
         <header className="page-header film-card__head">
           <div className="logo">
-            <a href={url} className="logo__link">
+            <Link className="logo__link" to={AppRoute.ROOT}>
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <ul className="user-block">
@@ -30,7 +31,7 @@ function MainPage({films, genre, year}) {
               </div>
             </li>
             <li className="user-block__item">
-              <a href={url} className="user-block__link">Sign out</a>
+              <Link className="user-block__link" to={AppRoute.LOGIN}>Sign out</Link>
             </li>
           </ul>
         </header>
@@ -71,34 +72,34 @@ function MainPage({films, genre, year}) {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <ul className="catalog__genres-list">
             <li className="catalog__genres-item catalog__genres-item--active">
-              <a href={url} className="catalog__genres-link">All genres</a>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>All genres</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href={url} className="catalog__genres-link">Comedies</a>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Comedies</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href={url} className="catalog__genres-link">Crime</a>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Crime</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href={url} className="catalog__genres-link">Documentary</a>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Documentary</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href={url} className="catalog__genres-link">Dramas</a>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Dramas</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href={url} className="catalog__genres-link">Horror</a>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Horror</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href={url} className="catalog__genres-link">Kids & Family</a>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Kids & Family</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href={url} className="catalog__genres-link">Romance</a>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Romance</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href={url} className="catalog__genres-link">Sci-Fi</a>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Sci-Fi</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href={url} className="catalog__genres-link">Thrillers</a>
+              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Thrillers</Link>
             </li>
           </ul>
           <FilmList films={films} />
@@ -108,11 +109,11 @@ function MainPage({films, genre, year}) {
         </section>
         <footer className="page-footer">
           <div className="logo">
-            <a href={url} className="logo__link logo__link--light">
+            <Link className="logo__link logo__link--light" to={AppRoute.ROOT}>
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">

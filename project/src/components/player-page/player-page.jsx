@@ -4,12 +4,7 @@ import filmsProp from '../../props/films.prop';
 
 function PlayerPage({films, match}) {
   const id = match.params.id;
-  const film = films.reduce((item, result) => {
-    if(item.id === id) {
-      result = item;
-    }
-    return result;
-  }, {});
+  const film = films.find((item) => item.id === id);
 
   return (
     <div className="player">

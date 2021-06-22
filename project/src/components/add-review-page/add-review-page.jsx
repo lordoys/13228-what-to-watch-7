@@ -2,37 +2,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CommentForm from '../comment-form/comment-form';
 import filmsProp from '../../props/films.prop';
+import {AppRoute} from '../../routes';
+import {Link} from 'react-router-dom';
 
 function AddReviewPage({films, match}) {
   const id = match.params.id;
   const film = films[id - 1];
-  const url = '#';
 
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={film.backgroundImage} alt={film.name}/>
+          <img src={`img/${film.backgroundImage}`} alt={film.backgroundImage}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header">
           <div className="logo">
-            <a href="main.html" className="logo__link">
+            <Link className="logo__link" to={AppRoute.ROOT}>
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">{film.name}</a>
+                <Link className="breadcrumbs__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
-                <a href={url} className="breadcrumbs__link">Add review</a>
+                <Link className="breadcrumbs__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/review`}>Add review</Link>
               </li>
             </ul>
           </nav>
@@ -44,13 +45,13 @@ function AddReviewPage({films, match}) {
               </div>
             </li>
             <li className="user-block__item">
-              <a href={url} className="user-block__link">Sign out</a>
+              <Link className="user-block__link" to={AppRoute.LOGIN}>Sign out</Link>
             </li>
           </ul>
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={film.backgroundImage} alt={film.name} width="218" height="327"/>
+          <img src={`img/${film.posterImage}`} alt={`img/${film.posterImage}`} width="218" height="327"/>
         </div>
       </div>
       <CommentForm />

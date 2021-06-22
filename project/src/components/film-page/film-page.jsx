@@ -1,29 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import filmsProp from '../../props/films.prop';
+import {AppRoute} from '../../routes';
+import {Link} from 'react-router-dom';
 
 function FilmPage({films, match}) {
   const id = match.params.id;
   const film = films[id - 1];
-  const url = '#';
 
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film.backgroundImage} alt={film.name}/>
+            <img src={`img/${film.backgroundImage}`} alt={film.backgroundImage}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header film-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link className="logo__link" to={AppRoute.ROOT}>
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <ul className="user-block">
@@ -33,7 +34,7 @@ function FilmPage({films, match}) {
                 </div>
               </li>
               <li className="user-block__item">
-                <a href={url} className="user-block__link">Sign out</a>
+                <Link className="user-block__link" to={AppRoute.LOGIN}>Sign out</Link>
               </li>
             </ul>
           </header>
@@ -59,7 +60,7 @@ function FilmPage({films, match}) {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                <Link className="btn film-card__button" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/review`}>Add review</Link>
               </div>
             </div>
           </div>
@@ -68,20 +69,20 @@ function FilmPage({films, match}) {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={film.posterImage} alt={film.name} width="218" height="327"/>
+              <img src={`img/${film.posterImage}`} alt={`img/${film.posterImage}`} width="218" height="327"/>
             </div>
 
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item film-nav__item--active">
-                    <a href={url} className="film-nav__link">Overview</a>
+                    <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>Overview</Link>
                   </li>
                   <li className="film-nav__item">
-                    <a href={url} className="film-nav__link">Details</a>
+                    <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/details`}>Details</Link>
                   </li>
                   <li className="film-nav__item">
-                    <a href={url} className="film-nav__link">Reviews</a>
+                    <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/reviews`}>Reviews</Link>
                   </li>
                 </ul>
               </nav>
@@ -114,7 +115,7 @@ function FilmPage({films, match}) {
                 <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"/>
               </div>
               <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
+                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>{film.name}</Link>
               </h3>
             </article>
 
@@ -123,7 +124,7 @@ function FilmPage({films, match}) {
                 <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175"/>
               </div>
               <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
+                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>{film.name}</Link>
               </h3>
             </article>
 
@@ -132,7 +133,7 @@ function FilmPage({films, match}) {
                 <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175"/>
               </div>
               <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Macbeth</a>
+                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>{film.name}</Link>
               </h3>
             </article>
 
@@ -141,7 +142,7 @@ function FilmPage({films, match}) {
                 <img src="img/aviator.jpg" alt="Aviator" width="280" height="175"/>
               </div>
               <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Aviator</a>
+                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>{film.name}</Link>
               </h3>
             </article>
           </div>
@@ -149,11 +150,11 @@ function FilmPage({films, match}) {
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
+            <Link className="logo__link logo__link--light" to={AppRoute.ROOT}>
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
