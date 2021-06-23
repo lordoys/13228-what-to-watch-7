@@ -3,9 +3,21 @@ import {Link} from 'react-router-dom';
 import {AppRoute} from '../../routes';
 import filmProp from '../../props/film.prop';
 import PropTypes from 'prop-types';
+import FilmOverview from '../film-overview/film-overview';
+import FilmDetails from '../film-details/film-details';
+import FilmReviews from '../film-reviews/film-reviews';
 
 function FilmTabs({film, match}) {
   const currentTab = match.params.tab;
+  let content;
+
+  if (currentTab === 'overview') {
+    content = <FilmOverview film={film} />;
+  } else if (currentTab === 'details') {
+    content = <FilmDetails film={film} />;
+  } else {
+    content = <FilmReviews />;
+  }
 
   return (
     <div className="film-card__desc">
@@ -23,19 +35,7 @@ function FilmTabs({film, match}) {
         </ul>
       </nav>
 
-      <div className="film-rating">
-        <div className="film-rating__score">{film.rating}</div>
-        <p className="film-rating__meta">
-          <span className="film-rating__level">Very good</span>
-          <span className="film-rating__count">{film.scoresCount} ratings</span>
-        </p>
-      </div>
-
-      <div className="film-card__text">
-        <p>{film.description}</p>
-        <p className="film-card__director"><strong>Director: {film.director}</strong></p>
-        <p className="film-card__starring"><strong>Starring: {film.starring} and other</strong></p>
-      </div>
+      {content}
     </div>
   );
 }
