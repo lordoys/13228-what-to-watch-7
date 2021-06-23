@@ -8,34 +8,25 @@ import FilmDetails from '../film-details/film-details';
 import FilmReviews from '../film-reviews/film-reviews';
 
 function FilmTabs({film, match}) {
-  const currentTab = match.params.tab;
-  let content;
-
-  if (currentTab === 'overview') {
-    content = <FilmOverview film={film} />;
-  } else if (currentTab === 'details') {
-    content = <FilmDetails film={film} />;
-  } else {
-    content = <FilmReviews />;
-  }
+  const tabList = {
+    'overview': FilmOverview,
+    'details': FilmDetails,
+    'reviews': FilmReviews,
+  };
+  const DynamicContent = tabList[match.params.tab];
 
   return (
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          <li className={`film-nav__item ${currentTab === 'overview' ? 'film-nav__item--active' : ''}`}>
-            <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>Overview</Link>
-          </li>
-          <li className={`film-nav__item ${currentTab === 'details' ? 'film-nav__item--active' : ''}`}>
-            <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/details`}>Details</Link>
-          </li>
-          <li className={`film-nav__item ${currentTab === 'reviews' ? 'film-nav__item--active' : ''}`}>
-            <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/reviews`}>Reviews</Link>
-          </li>
+          {Object.keys(tabList).map((tab) => (
+            <li key={tab} className={`film-nav__item ${tab === match.params.tab ? 'film-nav__item--active' : ''}`}>
+              <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/${tab}`}>{tab[0].toUpperCase() + tab.slice(1)}</Link>
+            </li>
+          ))}
         </ul>
       </nav>
-
-      {content}
+      <DynamicContent film={film}/>
     </div>
   );
 }
