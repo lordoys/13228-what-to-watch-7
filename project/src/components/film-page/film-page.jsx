@@ -5,6 +5,7 @@ import {AppRoute} from '../../routes';
 import {Link} from 'react-router-dom';
 import FilmTabs from '../film-tabs/film-tabs';
 import FilmList from '../film-list/film-list';
+import reviews from '../../mocks/reviews';
 
 function FilmPage({films, match}) {
   const id = match.params.id;
@@ -73,7 +74,7 @@ function FilmPage({films, match}) {
             <div className="film-card__poster film-card__poster--big">
               <img src={`img/${film.posterImage}`} alt={`img/${film.posterImage}`} width="218" height="327"/>
             </div>
-            <FilmTabs film={film} match={match} />
+            <FilmTabs film={film} match={match} reviews={reviews}/>
           </div>
         </div>
       </section>
@@ -105,7 +106,11 @@ function FilmPage({films, match}) {
 
 FilmPage.propTypes = {
   films: filmsProp,
-  match: PropTypes.object,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      tab: PropTypes.string,
+    })
+  }),
 };
 
 export default FilmPage;

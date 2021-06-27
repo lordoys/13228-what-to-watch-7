@@ -2,12 +2,13 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../routes';
 import filmProp from '../../props/film.prop';
+import reviewsProp from '../../props/reviews.prop';
 import PropTypes from 'prop-types';
 import FilmOverview from '../film-overview/film-overview';
 import FilmDetails from '../film-details/film-details';
 import FilmReviews from '../film-reviews/film-reviews';
 
-function FilmTabs({film, match}) {
+function FilmTabs({film, match, reviews}) {
   const tabList = {
     'overview': FilmOverview,
     'details': FilmDetails,
@@ -26,14 +27,19 @@ function FilmTabs({film, match}) {
           ))}
         </ul>
       </nav>
-      <DynamicContent film={film}/>
+      <DynamicContent film={film} reviews={reviews} />
     </div>
   );
 }
 
 FilmTabs.propTypes = {
   film: filmProp,
-  match: PropTypes.object,
+  reviews: reviewsProp,
+  match: PropTypes.shape({
+      params: PropTypes.shape({
+          tab: PropTypes.string,
+        })
+    }),
 };
 
 export default FilmTabs;
