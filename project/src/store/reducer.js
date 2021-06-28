@@ -1,3 +1,5 @@
+import {ActionType} from './action';
+
 const initialState = {
   genre: '',
   films: [],
@@ -5,13 +7,13 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case '':
+    case ActionType.CHANGE_GENRE:
       return {
-
+        ...state,
       };
-    case '':
+    case ActionType.GET_FILMS_BY_GENRE:
       return {
-
+        ...state,
       };
     default:
       return state;
