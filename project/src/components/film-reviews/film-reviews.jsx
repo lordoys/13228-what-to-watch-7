@@ -4,40 +4,47 @@ import filmProp from '../../props/film.prop';
 
 function FilmReviews({reviews, film}) {
   function getReviewsForCurrentFilm(list) {
-    const allReviews = list.filter((review) => review.id === Number(film.id));
-    const addReviews = allReviews.filter((e,i)=>!(i%2));
-    const evenReviews = allReviews.filter((e,i)=>(i%2));
-    const result = [];
+    return list.filter((review) => review.id === Number(film.id));
+  }
 
-    if (addReviews) {
-      result.push(addReviews);
-    }
+  function getEven(list) {
+    return getReviewsForCurrentFilm(list).filter((e,i)=>!(i%2));
+  }
 
-    if (evenReviews) {
-      result.push(evenReviews);
-    }
-
-    return result;
+  function getOdd(list) {
+    return getReviewsForCurrentFilm(list).filter((e,i)=>(i%2));
   }
 
   return (
     <div className="film-card__reviews film-card__row">
-      {getReviewsForCurrentFilm(reviews).map((column, columnIndex) => (
-        <div key={String(columnIndex)} className="film-card__reviews-col">
-          {column.map((review, index) => (
-            <div key={String(index)} className="review">
-              <blockquote className="review__quote">
-                <p className="review__text">{review.comment}</p>
-                <footer className="review__details">
-                  <cite className="review__author">{review.user}</cite>
-                  <time className="review__date" dateTime="2016-12-24">{review.date}</time>
-                </footer>
-              </blockquote>
-              <div className="review__rating">{review.rating}</div>
-            </div>
-          ))}
-        </div>
-      ))}
+      <div className="film-card__reviews-col">
+        {getEven(reviews).map((review, index) => (
+          <div key={String(index)} className="review">
+            <blockquote className="review__quote">
+              <p className="review__text">{review.comment}</p>
+              <footer className="review__details">
+                <cite className="review__author">{review.user}</cite>
+                <time className="review__date" dateTime="2016-12-24">{review.date}</time>
+              </footer>
+            </blockquote>
+            <div className="review__rating">{review.rating}</div>
+          </div>
+        ))}
+      </div>
+      <div className="film-card__reviews-col">
+        {getOdd(reviews).map((review, index) => (
+          <div key={String(index)} className="review">
+            <blockquote className="review__quote">
+              <p className="review__text">{review.comment}</p>
+              <footer className="review__details">
+                <cite className="review__author">{review.user}</cite>
+                <time className="review__date" dateTime="2016-12-24">{review.date}</time>
+              </footer>
+            </blockquote>
+            <div className="review__rating">{review.rating}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
