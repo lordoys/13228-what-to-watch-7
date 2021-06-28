@@ -61,7 +61,11 @@ function AddReviewPage({films, match}) {
 
 AddReviewPage.propTypes = {
   films: filmsProp,
-  match: PropTypes.object,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }),
 };
 
 export default AddReviewPage;

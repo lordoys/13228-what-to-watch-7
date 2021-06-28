@@ -10,6 +10,7 @@ function FilmCard({film}) {
   let waitingPlay;
 
   function handleClick() {
+    clearTimeout(waitingPlay);
     history.push(AppRoute.ROOT);
   }
 

@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import filmsProp from '../../props/films.prop';
 import {AppRoute} from '../../routes';
 import {Link} from 'react-router-dom';
+import FilmTabs from '../film-tabs/film-tabs';
+import FilmList from '../film-list/film-list';
+import reviews from '../../mocks/reviews';
 
 function FilmPage({films, match}) {
   const id = match.params.id;
@@ -71,36 +74,7 @@ function FilmPage({films, match}) {
             <div className="film-card__poster film-card__poster--big">
               <img src={`img/${film.posterImage}`} alt={`img/${film.posterImage}`} width="218" height="327"/>
             </div>
-
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>Overview</Link>
-                  </li>
-                  <li className="film-nav__item">
-                    <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/details`}>Details</Link>
-                  </li>
-                  <li className="film-nav__item">
-                    <Link className="film-nav__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/reviews`}>Reviews</Link>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="film-rating">
-                <div className="film-rating__score">{film.rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">{film.scoresCount} ratings</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                <p>{film.description}</p>
-                <p className="film-card__director"><strong>Director: {film.director}</strong></p>
-                <p className="film-card__starring"><strong>Starring: {film.starring} and other</strong></p>
-              </div>
-            </div>
+            <FilmTabs film={film} match={match} reviews={reviews}/>
           </div>
         </div>
       </section>
@@ -109,43 +83,7 @@ function FilmPage({films, match}) {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <div className="catalog__films-list">
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"/>
-              </div>
-              <h3 className="small-film-card__title">
-                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>{film.name}</Link>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175"/>
-              </div>
-              <h3 className="small-film-card__title">
-                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>{film.name}</Link>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175"/>
-              </div>
-              <h3 className="small-film-card__title">
-                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>{film.name}</Link>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175"/>
-              </div>
-              <h3 className="small-film-card__title">
-                <Link className="small-film-card__link" to={`${AppRoute.FILM_BASE_IRL}/${film.id}/overview`}>{film.name}</Link>
-              </h3>
-            </article>
-          </div>
+          <FilmList films={films} genre={film.genre}/>
         </section>
 
         <footer className="page-footer">
@@ -168,7 +106,11 @@ function FilmPage({films, match}) {
 
 FilmPage.propTypes = {
   films: filmsProp,
-  match: PropTypes.object,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }),
 };
 
 export default FilmPage;
