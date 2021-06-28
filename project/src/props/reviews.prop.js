@@ -7,5 +7,5 @@ export default PropTypes.arrayOf(
     rating: PropTypes.string,
     comment: PropTypes.string,
     date: PropTypes.string,
-  })
+  }),
 );

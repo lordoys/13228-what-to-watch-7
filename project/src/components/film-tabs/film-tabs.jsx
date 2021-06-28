@@ -36,10 +36,10 @@ FilmTabs.propTypes = {
   film: filmProp,
   reviews: reviewsProp,
   match: PropTypes.shape({
-      params: PropTypes.shape({
-          tab: PropTypes.string,
-        })
+    params: PropTypes.shape({
+      tab: PropTypes.string,
     }),
+  }),
 };
 
 export default FilmTabs;

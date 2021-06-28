@@ -46,8 +46,8 @@ PlayerPage.propTypes = {
   films: filmsProp,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      tab: PropTypes.string,
-    })
+      id: PropTypes.string,
+    }),
   }),
 };
 

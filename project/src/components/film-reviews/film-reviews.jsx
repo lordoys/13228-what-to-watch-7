@@ -22,10 +22,10 @@ function FilmReviews({reviews, film}) {
 
   return (
     <div className="film-card__reviews film-card__row">
-      {getReviewsForCurrentFilm(reviews).map((column, index) => (
-        <div key={index} className="film-card__reviews-col">
+      {getReviewsForCurrentFilm(reviews).map((column, columnIndex) => (
+        <div key={String(columnIndex)} className="film-card__reviews-col">
           {column.map((review, index) => (
-            <div key={review.id + index} className="review">
+            <div key={String(index)} className="review">
               <blockquote className="review__quote">
                 <p className="review__text">{review.comment}</p>
                 <footer className="review__details">
