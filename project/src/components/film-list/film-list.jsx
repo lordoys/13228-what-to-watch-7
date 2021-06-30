@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 function FilmList({films, genre}) {
   return (
     <div className="catalog__films-list">
-      {(genre) ?
+      {(genre && genre !== 'All genres') ?
         films.filter((film) => film.genre === genre).map((item) => <FilmCard key={item.id} film={item}/>) :
         films.map((item) => <FilmCard key={item.id} film={item}/>)}
     </div>

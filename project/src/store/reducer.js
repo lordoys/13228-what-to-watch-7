@@ -1,7 +1,7 @@
 import {ActionType} from './action';
 
 const initialState = {
-  genre: '',
+  genre: 'All genres',
   films: [],
 };
 
@@ -10,6 +10,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_GENRE:
       return {
         ...state,
+        genre: action.genre,
       };
     case ActionType.GET_FILMS_BY_GENRE:
       return {
