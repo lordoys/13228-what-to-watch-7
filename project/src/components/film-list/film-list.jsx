@@ -2,6 +2,7 @@ import React from 'react';
 import FilmCard from '../film-card/film-card';
 import filmsProp from '../../props/films.prop';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 function FilmList({films, genre}) {
   return (
@@ -13,9 +14,14 @@ function FilmList({films, genre}) {
   );
 }
 
+const mapStateToProps = (state) => ({
+  films: state.films,
+});
+
 FilmList.propTypes = {
   films: filmsProp,
   genre: PropTypes.string,
 };
 
-export default FilmList;
+export {FilmList};
+export default connect(mapStateToProps)(FilmList);

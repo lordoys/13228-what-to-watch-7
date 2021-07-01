@@ -5,9 +5,8 @@ import filmsProp from '../../props/films.prop';
 import {AppRoute} from '../../routes';
 import {Link} from 'react-router-dom';
 import GenreList from '../genre-list/genre-list';
-import {connect} from 'react-redux';
 
-function MainPage({films, genre, year, currentGenre}) {
+function MainPage({films, genre, year}) {
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
@@ -84,7 +83,7 @@ function MainPage({films, genre, year, currentGenre}) {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenreList genres={getAllGenres()}/>
-          <FilmList films={films} genre={currentGenre}/>
+          <FilmList films={films}/>
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
@@ -107,16 +106,10 @@ function MainPage({films, genre, year, currentGenre}) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  currentGenre: state.genre,
-});
-
 MainPage.propTypes = {
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
-  currentGenre: PropTypes.string,
   films: filmsProp,
 };
 
-export {MainPage};
-export default connect(mapStateToProps)(MainPage);
+export default MainPage;

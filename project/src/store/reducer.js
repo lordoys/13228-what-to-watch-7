@@ -1,8 +1,9 @@
 import {ActionType} from './action';
+import films from '../mocks/films';
 
 const initialState = {
   genre: 'All genres',
-  films: [],
+  films: films,
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,6 +12,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         genre: action.payload,
+        films: action.payload === 'All genres' ? films : films.filter((film) => (film.genre === action.payload)),
       };
     case ActionType.GET_FILMS_BY_GENRE:
       return {
