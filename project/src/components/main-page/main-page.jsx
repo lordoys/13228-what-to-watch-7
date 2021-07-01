@@ -5,16 +5,13 @@ import filmsProp from '../../props/films.prop';
 import {AppRoute} from '../../routes';
 import {Link} from 'react-router-dom';
 import GenreList from '../genre-list/genre-list';
+import {uniq} from 'lodash'
 
 function MainPage({films, genre, year}) {
-  function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
-  }
-
   function getAllGenres() {
     return films.reduce((result, film) => {
       result.push(film.genre);
-      return result.filter(onlyUnique);
+      return uniq(result);
     }, []);
   }
 
