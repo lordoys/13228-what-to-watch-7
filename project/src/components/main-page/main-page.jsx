@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes, {string} from 'prop-types';
+import PropTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
 import filmsProp from '../../props/films.prop';
 import {AppRoute} from '../../routes';
