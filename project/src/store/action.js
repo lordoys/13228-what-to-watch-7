@@ -1,6 +1,7 @@
 export const ActionType = {
   CHANGE_GENRE: 'changeGenre',
   GET_FILMS_BY_GENRE: 'getFilmsByGenre',
+  GET_SIMILAR_LIST: 'getSimilarList',
 };
 
 export const ActionCreator = {
@@ -10,5 +11,9 @@ export const ActionCreator = {
   }),
   getFilmsByGenre: () => ({
     type: ActionType.GET_FILMS_BY_GENRE,
+  }),
+  getSimilarList: (genre) => ({
+    type: ActionType.GET_SIMILAR_LIST,
+    payload: genre,
   }),
 };

@@ -1,20 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, {string} from 'prop-types';
 import FilmList from '../film-list/film-list';
 import filmsProp from '../../props/films.prop';
 import {AppRoute} from '../../routes';
 import {Link} from 'react-router-dom';
 import GenreList from '../genre-list/genre-list';
-import {uniq} from 'lodash'
+import {connect} from 'react-redux';
 
-function MainPage({films, genre, year}) {
-  function getAllGenres() {
-    return films.reduce((result, film) => {
-      result.push(film.genre);
-      return uniq(result);
-    }, []);
-  }
-
+function MainPage({films, genre, year, genres}) {
   return (
     <>
       <section className="film-card">
@@ -79,7 +72,7 @@ function MainPage({films, genre, year}) {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenreList genres={getAllGenres()}/>
+          <GenreList genres={genres}/>
           <FilmList films={films}/>
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -103,10 +96,17 @@ function MainPage({films, genre, year}) {
   );
 }
 
+const mapStateToProps = (state) => ({
+  films: state.films,
+  genres: state.genres,
+});
+
 MainPage.propTypes = {
   genre: PropTypes.string.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string),
   year: PropTypes.number.isRequired,
   films: filmsProp,
 };
 
-export default MainPage;
+export {MainPage};
+export default connect(mapStateToProps)(MainPage);

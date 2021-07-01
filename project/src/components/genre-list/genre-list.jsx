@@ -29,8 +29,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeGenre(number) {
-    dispatch(ActionCreator.changeGenre(number));
+  changeGenre(targetGenre) {
+    dispatch(ActionCreator.changeGenre(targetGenre));
   },
 });
 

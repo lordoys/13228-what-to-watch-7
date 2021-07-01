@@ -6,8 +6,9 @@ import {Link} from 'react-router-dom';
 import FilmTabs from '../film-tabs/film-tabs';
 import FilmList from '../film-list/film-list';
 import reviews from '../../mocks/reviews';
+import {connect} from 'react-redux';
 
-function FilmPage({films, match}) {
+function FilmPage({films, match, similarList}) {
   const id = match.params.id;
   const film = films[id - 1];
 
@@ -83,7 +84,7 @@ function FilmPage({films, match}) {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <FilmList films={films} genre={film.genre}/>
+          <FilmList films={similarList}/>
         </section>
 
         <footer className="page-footer">
@@ -104,8 +105,13 @@ function FilmPage({films, match}) {
   );
 }
 
+const mapStateToProps = (state) => ({
+  similarList: state.similarList,
+});
+
 FilmPage.propTypes = {
   films: filmsProp,
+  similarList: filmsProp,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,
@@ -113,4 +119,5 @@ FilmPage.propTypes = {
   }),
 };
 
-export default FilmPage;
+export {FilmPage};
+export default connect(mapStateToProps)(FilmPage);

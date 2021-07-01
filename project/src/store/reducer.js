@@ -1,8 +1,18 @@
 import {ActionType} from './action';
 import films from '../mocks/films';
+import {uniq} from 'lodash';
+
+function getAllGenres() {
+  return films.reduce((result, film) => {
+    result.push(film.genre);
+    return uniq(result);
+  }, []);
+}
 
 const initialState = {
   genre: 'All genres',
+  genres: getAllGenres(),
+  similarList: [],
   films: films,
 };
 
@@ -17,6 +27,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.GET_FILMS_BY_GENRE:
       return {
         ...state,
+      };
+    case ActionType.GET_SIMILAR_LIST:
+      return {
+        ...state,
+        similarList: films.filter((film) => (film.genre === action.payload)),
       };
     default:
       return state;
