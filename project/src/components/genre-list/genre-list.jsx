@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
 
-function GenreList({genres, changeGenre}) {
+function GenreList({genres, changeGenre, genre}) {
   return (
     <ul className="catalog__genres-list">
-      <li className="catalog__genres-item catalog__genres-item--active">
+      <li className={`catalog__genres-item ${genre === 'All genres' ? 'catalog__genres-item--active' : ''}`}>
         <Link onClick={() => {changeGenre('All genres')}} className="catalog__genres-link" to={AppRoute.ROOT}>All genres</Link>
       </li>
       {genres.map((item) => (
-        <li key={item} className="catalog__genres-item">
+        <li key={item} className={`catalog__genres-item ${genre === item ? 'catalog__genres-item--active' : ''}`}>
           <Link onClick={() => {changeGenre(item)}} className="catalog__genres-link" to={AppRoute.ROOT}>{item}</Link>
         </li>
       ))}
@@ -32,6 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 GenreList.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string),
+  genre: PropTypes.string,
   changeGenre: PropTypes.func,
 };
 
