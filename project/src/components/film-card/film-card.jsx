@@ -1,15 +1,19 @@
 import React, {useRef} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import filmProp from '../../props/film.prop';
+import PropTypes from 'prop-types';
 import {AppRoute} from '../../routes';
 import FilmVideo from '../film-video/film-video';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../store/action';
 
-function FilmCard({film}) {
+function FilmCard({film, getSimilarList}) {
   const history = useHistory();
   const videoRef = useRef(null);
   let waitingPlay;
 
   function handleClick() {
+    getSimilarList(film.genre);
     clearTimeout(waitingPlay);
     history.push(AppRoute.ROOT);
   }
@@ -33,8 +37,16 @@ function FilmCard({film}) {
   );
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  getSimilarList(genre) {
+    dispatch(ActionCreator.getSimilarList(genre));
+  },
+});
+
 FilmCard.propTypes = {
   film: filmProp,
+  getSimilarList: PropTypes.func,
 };
 
-export default FilmCard;
+export {FilmCard};
+export default connect(null, mapDispatchToProps)(FilmCard);

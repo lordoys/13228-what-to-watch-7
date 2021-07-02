@@ -4,8 +4,10 @@ import FilmList from '../film-list/film-list';
 import filmsProp from '../../props/films.prop';
 import {AppRoute} from '../../routes';
 import {Link} from 'react-router-dom';
+import GenreList from '../genre-list/genre-list';
+import {connect} from 'react-redux';
 
-function MainPage({films, genre, year}) {
+function MainPage({films, genre, year, genres}) {
   return (
     <>
       <section className="film-card">
@@ -70,39 +72,8 @@ function MainPage({films, genre, year}) {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <Link className="catalog__genres-link" to={AppRoute.ROOT}>All genres</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Comedies</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Crime</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Documentary</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Dramas</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Horror</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Kids & Family</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Romance</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Sci-Fi</Link>
-            </li>
-            <li className="catalog__genres-item">
-              <Link className="catalog__genres-link" to={AppRoute.ROOT}>Thrillers</Link>
-            </li>
-          </ul>
-          <FilmList films={films} />
+          <GenreList genres={genres}/>
+          <FilmList films={films}/>
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
@@ -125,10 +96,17 @@ function MainPage({films, genre, year}) {
   );
 }
 
+const mapStateToProps = (state) => ({
+  films: state.films,
+  genres: state.genres,
+});
+
 MainPage.propTypes = {
   genre: PropTypes.string.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string),
   year: PropTypes.number.isRequired,
   films: filmsProp,
 };
 
-export default MainPage;
+export {MainPage};
+export default connect(mapStateToProps)(MainPage);
