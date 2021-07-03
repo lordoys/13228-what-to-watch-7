@@ -6,18 +6,18 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
 
 function GenreList({genres, changeGenre, genre}) {
-  function handleClick(targetGenre) {
-    changeGenre(targetGenre);
+  function handleClick(event) {
+    changeGenre(event.target.name);
   }
 
   return (
     <ul className="catalog__genres-list">
       <li className={`catalog__genres-item ${genre === 'All genres' ? 'catalog__genres-item--active' : ''}`}>
-        <Link onClick={handleClick.bind(this, 'All genres')} className="catalog__genres-link" to={AppRoute.ROOT}>All genres</Link>
+        <Link onClick={handleClick} name={'All genres'} className="catalog__genres-link" to={AppRoute.ROOT}>All genres</Link>
       </li>
       {genres.map((item) => (
         <li key={item} className={`catalog__genres-item ${genre === item ? 'catalog__genres-item--active' : ''}`}>
-          <Link onClick={handleClick.bind(this, item)} className="catalog__genres-link" to={AppRoute.ROOT}>{item}</Link>
+          <Link onClick={handleClick} name={item} className="catalog__genres-link" to={`${AppRoute.ROOT}sort/${item.toLowerCase()}`}>{item}</Link>
         </li>
       ))}
     </ul>
