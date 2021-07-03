@@ -13,7 +13,7 @@ const initialState = {
   genre: 'All genres',
   genres: getAllGenres(),
   similarList: [],
-  films: films,
+  films,
 };
 
 const reducer = (state = initialState, action) => {
