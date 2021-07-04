@@ -1,6 +1,15 @@
 import {ActionType} from './action';
 import films from '../mocks/films';
 import {uniq} from 'lodash';
+const defaultCount = 8;
+
+const initialState = {
+  genre: 'All genres',
+  genres: getAllGenres(),
+  similarList: [],
+  films: getSortedFilmList(films, 'All genres'),
+  count: defaultCount,
+};
 
 function getAllGenres() {
   return films.reduce((result, film) => {
@@ -17,19 +26,13 @@ function getSortedFilmList(filmList, genre) {
   }
 }
 
-const initialState = {
-  genre: 'All genres',
-  genres: getAllGenres(),
-  similarList: [],
-  films,
-};
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_GENRE:
       return {
         ...state,
         genre: action.payload,
+        count: defaultCount,
         films: getSortedFilmList(films, action.payload),
       };
     case ActionType.GET_FILMS_BY_GENRE:
@@ -40,6 +43,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         similarList: getSortedFilmList(films, action.payload),
+      };
+    case ActionType.RESET_COUNT:
+      return {
+        ...state,
+        count: defaultCount,
+      };
+    case ActionType.INCREASE_COUNT:
+      return {
+        ...state,
+        count: state.count + defaultCount,
+        films: getSortedFilmList(films, state.genre),
       };
     default:
       return state;

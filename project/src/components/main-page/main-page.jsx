@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import FilmList from '../film-list/film-list';
 import filmsProp from '../../props/films.prop';
@@ -7,8 +7,19 @@ import {Link} from 'react-router-dom';
 import GenreList from '../genre-list/genre-list';
 import {connect} from 'react-redux';
 import ShowMore from '../show-more/show-more';
+import {ActionCreator} from '../../store/action';
 
-function MainPage({films, genre, year, genres}) {
+function MainPage({films, genre, year, genres, count, resetCount}) {
+  useEffect(() => resetCount(), [resetCount]);
+
+  function visibleFilms() {
+    return films.slice(0, count);
+  }
+
+  function hasShowMoreButton() {
+    return films.length > count;
+  }
+
   return (
     <>
       <section className="film-card">
@@ -74,8 +85,8 @@ function MainPage({films, genre, year, genres}) {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenreList genres={genres}/>
-          <FilmList films={films}/>
-          <ShowMore />
+          <FilmList films={visibleFilms()}/>
+          {hasShowMoreButton() && <ShowMore />}
         </section>
         <footer className="page-footer">
           <div className="logo">
@@ -98,6 +109,13 @@ function MainPage({films, genre, year, genres}) {
 const mapStateToProps = (state) => ({
   films: state.films,
   genres: state.genres,
+  count: state.count,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  resetCount() {
+    dispatch(ActionCreator.resetCount());
+  },
 });
 
 MainPage.propTypes = {
@@ -105,7 +123,9 @@ MainPage.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string),
   year: PropTypes.number.isRequired,
   films: filmsProp,
+  count: PropTypes.number,
+  resetCount: PropTypes.func,
 };
 
 export {MainPage};
-export default connect(mapStateToProps)(MainPage);
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
