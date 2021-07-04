@@ -6,6 +6,7 @@ import {AppRoute} from '../../routes';
 import {Link} from 'react-router-dom';
 import GenreList from '../genre-list/genre-list';
 import {connect} from 'react-redux';
+import ShowMore from '../show-more/show-more';
 
 function MainPage({films, genre, year, genres}) {
   return (
@@ -74,9 +75,7 @@ function MainPage({films, genre, year, genres}) {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenreList genres={genres}/>
           <FilmList films={films}/>
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <ShowMore />
         </section>
         <footer className="page-footer">
           <div className="logo">
