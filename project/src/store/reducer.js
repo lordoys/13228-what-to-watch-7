@@ -9,6 +9,14 @@ function getAllGenres() {
   }, []);
 }
 
+function getSortedFilmList(filmList, genre) {
+  if (genre === 'All genres') {
+    return filmList;
+  } else {
+    return filmList.filter((film) => film.genre === genre);
+  }
+}
+
 const initialState = {
   genre: 'All genres',
   genres: getAllGenres(),
@@ -22,7 +30,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         genre: action.payload,
-        films: action.payload === 'All genres' ? films : films.filter((film) => (film.genre === action.payload)),
+        films: getSortedFilmList(films, action.payload),
       };
     case ActionType.GET_FILMS_BY_GENRE:
       return {
@@ -31,7 +39,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.GET_SIMILAR_LIST:
       return {
         ...state,
-        similarList: films.filter((film) => (film.genre === action.payload)),
+        similarList: getSortedFilmList(films, action.payload),
       };
     default:
       return state;
