@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 import ShowMore from '../show-more/show-more';
 import {ActionCreator} from '../../store/action';
 
-function MainPage({films, genre, year, genres, count, resetCount}) {
+function MainPage({films, match, genre, year, genres, count, resetCount}) {
   useEffect(() => resetCount(), [resetCount]);
 
   function visibleFilms() {
@@ -84,7 +84,7 @@ function MainPage({films, genre, year, genres, count, resetCount}) {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenreList genres={genres}/>
+          <GenreList match={match} genres={genres}/>
           <FilmList films={visibleFilms()}/>
           {hasShowMoreButton() && <ShowMore />}
         </section>
@@ -125,6 +125,7 @@ MainPage.propTypes = {
   films: filmsProp,
   count: PropTypes.number,
   resetCount: PropTypes.func,
+  match: PropTypes.object,
 };
 
 export {MainPage};

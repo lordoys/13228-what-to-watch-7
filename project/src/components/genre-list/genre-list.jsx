@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../routes';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
 
-function GenreList({genres, changeGenre, genre}) {
+function GenreList({genres, match, changeGenre, genre}) {
+  useEffect(() => {
+    if(match.params.genre) {
+      changeGenre(match.params.genre[0].toUpperCase() + match.params.genre.slice(1));
+    }
+  });
+
   function handleClick(event) {
     changeGenre(event.target.name);
   }
@@ -38,6 +44,11 @@ GenreList.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string),
   genre: PropTypes.string,
   changeGenre: PropTypes.func,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      genre: PropTypes.string,
+    }),
+  }),
 };
 
 export {GenreList};
