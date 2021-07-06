@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
 
-function GenreList({genres, match, changeGenre, genre}) {
+function GenreList({genres, activeTab, changeGenre, genre}) {
   useEffect(() => {
-    if(match.params.genre) {
-      changeGenre(match.params.genre[0].toUpperCase() + match.params.genre.slice(1));
+    if(activeTab) {
+      changeGenre(activeTab);
     }
   });
 
@@ -44,11 +44,7 @@ GenreList.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string),
   genre: PropTypes.string,
   changeGenre: PropTypes.func,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      genre: PropTypes.string,
-    }),
-  }),
+  activeTab: PropTypes.string,
 };
 
 export {GenreList};

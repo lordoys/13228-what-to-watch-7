@@ -12,6 +12,10 @@ import {ActionCreator} from '../../store/action';
 function MainPage({films, match, genre, year, genres, count, resetCount}) {
   useEffect(() => resetCount(), [resetCount]);
 
+  function activeTab() {
+    return match.params.genre ? match.params.genre[0].toUpperCase() + match.params.genre.slice(1) : '';
+  }
+
   function visibleFilms() {
     return films.slice(0, count);
   }
@@ -84,7 +88,7 @@ function MainPage({films, match, genre, year, genres, count, resetCount}) {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenreList match={match} genres={genres}/>
+          <GenreList activeTab={activeTab()} genres={genres}/>
           <FilmList films={visibleFilms()}/>
           {hasShowMoreButton() && <ShowMore />}
         </section>
