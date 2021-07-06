@@ -84,7 +84,7 @@ function FilmPage({films, match, similarList}) {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <FilmList films={similarList}/>
+          <FilmList films={similarList.slice(0, 4)}/>
         </section>
 
         <footer className="page-footer">

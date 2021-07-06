@@ -1,6 +1,15 @@
 import {ActionType} from './action';
 import films from '../mocks/films';
 import {uniq} from 'lodash';
+const defaultCount = 8;
+
+const initialState = {
+  genre: 'All genres',
+  genres: getAllGenres(),
+  similarList: [],
+  films: getSortedFilmList(films, 'All genres'),
+  count: defaultCount,
+};
 
 function getAllGenres() {
   return films.reduce((result, film) => {
@@ -9,12 +18,13 @@ function getAllGenres() {
   }, []);
 }
 
-const initialState = {
-  genre: 'All genres',
-  genres: getAllGenres(),
-  similarList: [],
-  films: films,
-};
+function getSortedFilmList(filmList, genre) {
+  if (genre === 'All genres') {
+    return filmList;
+  } else {
+    return filmList.filter((film) => film.genre === genre);
+  }
+}
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -22,7 +32,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         genre: action.payload,
-        films: action.payload === 'All genres' ? films : films.filter((film) => (film.genre === action.payload)),
+        count: defaultCount,
+        films: getSortedFilmList(films, action.payload),
       };
     case ActionType.GET_FILMS_BY_GENRE:
       return {
@@ -31,7 +42,18 @@ const reducer = (state = initialState, action) => {
     case ActionType.GET_SIMILAR_LIST:
       return {
         ...state,
-        similarList: films.filter((film) => (film.genre === action.payload)),
+        similarList: getSortedFilmList(films, action.payload),
+      };
+    case ActionType.RESET_COUNT:
+      return {
+        ...state,
+        count: defaultCount,
+      };
+    case ActionType.INCREASE_COUNT:
+      return {
+        ...state,
+        count: state.count + defaultCount,
+        films: getSortedFilmList(films, state.genre),
       };
     default:
       return state;

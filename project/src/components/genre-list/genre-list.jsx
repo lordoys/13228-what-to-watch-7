@@ -1,23 +1,29 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../routes';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
 
-function GenreList({genres, changeGenre, genre}) {
-  function handleClick(targetGenre) {
-    changeGenre(targetGenre);
+function GenreList({genres, activeTab, changeGenre, genre}) {
+  useEffect(() => {
+    if(activeTab) {
+      changeGenre(activeTab);
+    }
+  });
+
+  function handleClick(event) {
+    changeGenre(event.target.name);
   }
 
   return (
     <ul className="catalog__genres-list">
       <li className={`catalog__genres-item ${genre === 'All genres' ? 'catalog__genres-item--active' : ''}`}>
-        <Link onClick={handleClick.bind(this, 'All genres')} className="catalog__genres-link" to={AppRoute.ROOT}>All genres</Link>
+        <Link onClick={handleClick} name={'All genres'} className="catalog__genres-link" to={AppRoute.ROOT}>All genres</Link>
       </li>
       {genres.map((item) => (
         <li key={item} className={`catalog__genres-item ${genre === item ? 'catalog__genres-item--active' : ''}`}>
-          <Link onClick={handleClick.bind(this, item)} className="catalog__genres-link" to={AppRoute.ROOT}>{item}</Link>
+          <Link onClick={handleClick} name={item} className="catalog__genres-link" to={`${AppRoute.ROOT}sort/${item.toLowerCase()}`}>{item}</Link>
         </li>
       ))}
     </ul>
@@ -38,6 +44,7 @@ GenreList.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string),
   genre: PropTypes.string,
   changeGenre: PropTypes.func,
+  activeTab: PropTypes.string,
 };
 
 export {GenreList};

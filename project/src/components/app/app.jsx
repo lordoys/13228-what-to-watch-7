@@ -15,7 +15,7 @@ function App({films, genre, year}) {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path={AppRoute.ROOT} exact
+        <Route path={[AppRoute.ROOT_SORTED, AppRoute.ROOT]} exact
           render={(props) => (
             <MainPage {...props} films={films} genre={genre} year={year}/>
           )}

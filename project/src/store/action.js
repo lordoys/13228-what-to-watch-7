@@ -2,6 +2,8 @@ export const ActionType = {
   CHANGE_GENRE: 'changeGenre',
   GET_FILMS_BY_GENRE: 'getFilmsByGenre',
   GET_SIMILAR_LIST: 'getSimilarList',
+  RESET_COUNT: 'resetCount',
+  INCREASE_COUNT: 'increaseCount',
 };
 
 export const ActionCreator = {
@@ -15,5 +17,11 @@ export const ActionCreator = {
   getSimilarList: (genre) => ({
     type: ActionType.GET_SIMILAR_LIST,
     payload: genre,
+  }),
+  resetCount: () => ({
+    type: ActionType.RESET_COUNT,
+  }),
+  increaseCount: () => ({
+    type: ActionType.INCREASE_COUNT,
   }),
 };
