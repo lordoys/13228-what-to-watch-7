@@ -6,8 +6,8 @@ import {Provider} from 'react-redux';
 import App from './components/app/app';
 import films from './mocks/films';
 import {reducer} from './store/reducer';
-import {createAPI} from './api'
-import thunk from '@reduxjs/toolkit';
+import {createAPI} from './api';
+import thunk from 'redux-thunk';
 
 const api = createAPI();
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))));
