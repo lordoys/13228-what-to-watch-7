@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from '@reduxjs/toolkit';
+import {createStore, applyMiddleware} from '@reduxjs/toolkit';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
 import App from './components/app/app';
 import films from './mocks/films';
 import {reducer} from './store/reducer';
+import {createAPI} from './api'
+import thunk from '@reduxjs/toolkit';
 
-const store = createStore(reducer, composeWithDevTools());
+const api = createAPI();
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api))));
 
 ReactDOM.render(
   <React.StrictMode>
